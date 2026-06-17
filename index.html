@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Domina el PAN: De 0 a 100 | eNCPT Masterclass</title>
+  <meta name="description" content="Presentación magistral interactiva sobre el Proceso de Atención Nutricia (PAN/ADIME) para nutriólogos clínicos — de 0 a 100 en cualquier patología." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     CHROME: Nav / Progress / Controls
+     ═══════════════════════════════════════════════ -->
+<div class="app-shell">
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar" aria-label="Navegación de diapositivas">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <span class="logo-icon">◎</span>
+        <span class="logo-text">PAN · eNCPT</span>
+      </div>
+      <button class="sidebar-close-btn" id="sidebarClose" aria-label="Cerrar panel">✕</button>
+    </div>
+    <div class="sidebar-slides" id="sidebarSlides">
+      <!-- Populated by JS -->
+    </div>
+    <div class="sidebar-footer">
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Cambiar tema">
+        <span id="themeIcon">🌙</span> Modo Oscuro
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Stage -->
+  <main class="stage" id="stage">
+
+    <!-- Top Bar -->
+    <div class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+      <div class="topbar-title" id="topbarTitle">Proceso de Atención Nutricia</div>
+      <div class="topbar-right">
+        <span class="slide-counter" id="slideCounter">1 / 12</span>
+        <button class="fullscreen-btn" id="fullscreenBtn" aria-label="Pantalla completa">⛶</button>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-track" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="12">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- ═══════════ SLIDES ═══════════ -->
+    <div class="slides-viewport" id="slidesViewport">
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 1: Hook / Cover
+           ───────────────────────────────────────────── -->
+      <section class="slide active" id="slide-1" data-title="Portada" data-num="1">
+        <div class="slide-cover">
+          <div class="cover-badge">eNCPT · ADA 2025 · ESPEN</div>
+          <h1 class="cover-title">Domina el <em>Proceso de Atención Nutricia</em></h1>
+          <p class="cover-subtitle">Tu pasaporte a la excelencia clínica: de <strong>0 a 100</strong> para cualquier paciente.</p>
+
+          <!-- ADIME Wheel SVG -->
+          <div class="adime-wheel-wrapper" aria-label="Diagrama ADIME circular">
+            <svg viewBox="0 0 340 340" class="adime-wheel-svg" id="adimeCoverWheel">
+              <defs>
+                <linearGradient id="gA" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#1e3a5f"/>
+                  <stop offset="100%" style="stop-color:#2563eb"/>
+                </linearGradient>
+                <linearGradient id="gD" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#0d9488"/>
+                  <stop offset="100%" style="stop-color:#14b8a6"/>
+                </linearGradient>
+                <linearGradient id="gI" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#0369a1"/>
+                  <stop offset="100%" style="stop-color:#0ea5e9"/>
+                </linearGradient>
+                <linearGradient id="gME" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#0f766e"/>
+                  <stop offset="100%" style="stop-color:#14b8a6"/>
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="rgba(30,58,95,0.3)"/>
+                </marker>
+              </defs>
+              <!-- Orbit rings -->
+              <circle cx="170" cy="170" r="148" fill="none" stroke="rgba(30,58,95,0.08)" stroke-width="1.5" stroke-dasharray="6 4"/>
+              <circle cx="170" cy="170" r="108" fill="none" stroke="rgba(13,148,136,0.1)" stroke-width="1" stroke-dasharray="4 6"/>
+              <!-- Center -->
+              <circle cx="170" cy="170" r="56" fill="url(#gA)" opacity="0.12"/>
+              <text x="170" y="163" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="18" fill="#1e3a5f">ADIME</text>
+              <text x="170" y="182" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748b">ciclo continuo</text>
+              <!-- Arrows -->
+              <path d="M170,22 A148,148 0 0,1 318,170" fill="none" stroke="rgba(30,58,95,0.15)" stroke-width="2" marker-end="url(#arr)"/>
+              <path d="M318,170 A148,148 0 0,1 170,318" fill="none" stroke="rgba(13,148,136,0.15)" stroke-width="2"/>
+              <path d="M170,318 A148,148 0 0,1 22,170" fill="none" stroke="rgba(3,105,161,0.15)" stroke-width="2"/>
+              <path d="M22,170 A148,148 0 0,1 170,22" fill="none" stroke="rgba(15,118,110,0.15)" stroke-width="2"/>
+              <!-- Node A -->
+              <g class="adime-node" data-label="A" transform="translate(170,22)">
+                <circle r="36" fill="url(#gA)" filter="url(#glow)"/>
+                <text text-anchor="middle" y="-2" font-family="Outfit,sans-serif" font-weight="800" font-size="18" fill="white">A</text>
+                <text text-anchor="middle" y="12" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.85)">Evaluación</text>
+              </g>
+              <!-- Node D -->
+              <g class="adime-node" data-label="D" transform="translate(318,170)">
+                <circle r="36" fill="url(#gD)" filter="url(#glow)"/>
+                <text text-anchor="middle" y="-2" font-family="Outfit,sans-serif" font-weight="800" font-size="18" fill="white">D</text>
+                <text text-anchor="middle" y="12" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.85)">Diagnóstico</text>
+              </g>
+              <!-- Node I -->
+              <g class="adime-node" data-label="I" transform="translate(170,318)">
+                <circle r="36" fill="url(#gI)" filter="url(#glow)"/>
+                <text text-anchor="middle" y="-2" font-family="Outfit,sans-serif" font-weight="800" font-size="18" fill="white">I</text>
+                <text text-anchor="middle" y="12" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.85)">Intervención</text>
+              </g>
+              <!-- Node ME -->
+              <g class="adime-node" data-label="ME" transform="translate(22,170)">
+                <circle r="36" fill="url(#gME)" filter="url(#glow)"/>
+                <text text-anchor="middle" y="-2" font-family="Outfit,sans-serif" font-weight="800" font-size="14" fill="white">M/E</text>
+                <text text-anchor="middle" y="12" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,0.85)">Monitoreo</text>
+              </g>
+            </svg>
+          </div>
+
+          <blockquote class="cover-quote">
+            "No es un formato que llenar; es un <strong>mapa mental</strong> para pensar como un clínico de élite."
+          </blockquote>
+          <div class="cover-meta">
+            <span>Academy of Nutrition and Dietetics · eNCPT 2024</span>
+            <span>·</span>
+            <span>ADA Standards of Care 2025</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 2: Consulta Tradicional vs PAN
+           ───────────────────────────────────────────── -->
+      <section class="slide" id="slide-2" data-title="Tradicional vs PAN" data-num="2">
+        <div class="slide-split">
+          <div class="split-header">
+            <div class="slide-tag teal">El Gran Cambio de Chip</div>
+            <h2>Consulta Tradicional <em>vs.</em> Consulta Basada en el PAN</h2>
+          </div>
+          <div class="compare-table-wrapper">
+            <table class="compare-table" id="compareTable">
+              <thead>
+                <tr>
+                  <th class="col-trad">
+                    <span class="col-icon">⚠️</span>
+                    Consulta Tradicional
+                    <span class="col-sub">Enfoque intuitivo</span>
+                  </th>
+                  <th class="col-pan">
+                    <span class="col-icon">✅</span>
+                    Consulta Basada en PAN
+                    <span class="col-sub">Enfoque científico · eNCPT</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="compare-row" data-delay="0">
+                  <td><span class="compare-x">✗</span> Diagnóstico médico repetido<br><small>ej. "Tiene diabetes, dieta para diabético"</small></td>
+                  <td><span class="compare-check">✓</span> Diagnóstico nutricio propio (PES)<br><small>ej. "Ingesta excesiva de CHO relacionado con…"</small></td>
+                </tr>
+                <tr class="compare-row" data-delay="1">
+                  <td><span class="compare-x">✗</span> Intervención genérica<br><small>"Comer sano y hacer ejercicio"</small></td>
+                  <td><span class="compare-check">✓</span> Intervención dirigida a la Etiología<br><small>Ataca la causa raíz del problema nutricio</small></td>
+                </tr>
+                <tr class="compare-row" data-delay="2">
+                  <td><span class="compare-x">✗</span> Sin medición de resultados<br><small>¿Mejoró el paciente? No lo sabemos.</small></td>
+                  <td><span class="compare-check">✓</span> Indicadores medibles estandarizados<br><small>Metas cuantificables basadas en signos/síntomas</small></td>
+                </tr>
+                <tr class="compare-row" data-delay="3">
+                  <td><span class="compare-x">✗</span> Lenguaje clínico informal<br><small>Sin terminología internacional</small></td>
+                  <td><span class="compare-check">✓</span> Lenguaje eNCPT universal<br><small>Reconocido por equipos multidisciplinarios globales</small></td>
+                </tr>
+                <tr class="compare-row" data-delay="4">
+                  <td><span class="compare-x">✗</span> Rol pasivo del nutriólogo<br><small>Sólo "da dietas"</small></td>
+                  <td><span class="compare-check">✓</span> Nutriólogo como clínico de élite<br><small>Con diagnóstico y metodología propios</small></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="key-quote">
+            <span class="quote-icon">💡</span>
+            El PAN eleva el reconocimiento del nutriólogo en el equipo multidisciplinario al hablar un <strong>lenguaje internacional común</strong>.
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 3: Ciclo ADIME
+           ───────────────────────────────────────────── -->
+      <section class="slide" id="slide-3" data-title="Ciclo ADIME" data-num="3">
+        <div class="slide-content">
+          <div class="slide-text">
+            <div class="slide-tag blue">Mapa del Viaje</div>
+            <h2>El Motor de <em>4 Tiempos</em> del Cuidado Nutricio</h2>
+            <div id="adimeDetail" class="adime-detail-panel">
+              <div class="adime-detail-placeholder">
+                <span class="detail-icon">☞</span>
+                <p>Haz clic en cada letra del ciclo para explorar la fase</p>
+              </div>
+            </div>
+            <p class="slide-footnote">
+              "Un ciclo <strong>continuo y centrado</strong> en el paciente que nunca termina hasta lograr su resolución clínica."
+            </p>
+          </div>
+          <div class="slide-visual">
+            <svg viewBox="0 0 320 320" class="adime-interactive-svg" id="adimeInteractiveSvg" aria-label="Ciclo ADIME interactivo">
+              <defs>
+                <linearGradient id="ga2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#1e3a5f"/>
+                  <stop offset="100%" style="stop-color:#2563eb"/>
+                </linearGradient>
+                <linearGradient id="gd2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#0d9488"/>
+                  <stop offset="100%" style="stop-color:#2dd4bf"/>
+                </linearGradient>
+                <linearGradient id="gi2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#0369a1"/>
+                  <stop offset="100%" style="stop-color:#38bdf8"/>
+                </linearGradient>
+                <linearGradient id="gme2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#134e4a"/>
+                  <stop offset="100%" style="stop-color:#14b8a6"/>
+                </linearGradient>
+                <filter id="glow2" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- Orbit -->
+              <circle cx="160" cy="160" r="130" fill="none" stroke="rgba(30,58,95,0.07)" stroke-width="1.5" stroke-dasharray="6 5"/>
+              <!-- Connecting arcs -->
+              <path d="M160,30 A130,130 0 0,1 290,160" fill="none" stroke="rgba(37,99,235,0.18)" stroke-width="3" stroke-linecap="round"/>
+              <path d="M290,160 A130,130 0 0,1 160,290" fill="none" stroke="rgba(13,148,136,0.18)" stroke-width="3" stroke-linecap="round"/>
+              <path d="M160,290 A130,130 0 0,1 30,160" fill="none" stroke="rgba(3,105,161,0.18)" stroke-width="3" stroke-linecap="round"/>
+              <path d="M30,160 A130,130 0 0,1 160,30" fill="none" stroke="rgba(20,184,166,0.18)" stroke-width="3" stroke-linecap="round"/>
+              <!-- Center circle -->
+              <circle cx="160" cy="160" r="44" fill="white" stroke="rgba(30,58,95,0.1)" stroke-width="1.5"/>
+              <text x="160" y="156" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="13" fill="#1e3a5f">PAN</text>
+              <text x="160" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#64748b">eNCPT</text>
+              <!-- Node A: top -->
+              <g class="adime-int-node" id="nodeA" data-phase="A" style="cursor:pointer" transform="translate(160,30)">
+                <circle r="32" fill="url(#ga2)" filter="url(#glow2)"/>
+                <text text-anchor="middle" y="-3" font-family="Outfit,sans-serif" font-weight="800" font-size="20" fill="white">A</text>
+                <text text-anchor="middle" y="13" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.9)">Evaluación</text>
+              </g>
+              <!-- Node D: right -->
+              <g class="adime-int-node" id="nodeD" data-phase="D" style="cursor:pointer" transform="translate(290,160)">
+                <circle r="32" fill="url(#gd2)" filter="url(#glow2)"/>
+                <text text-anchor="middle" y="-3" font-family="Outfit,sans-serif" font-weight="800" font-size="20" fill="white">D</text>
+                <text text-anchor="middle" y="13" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.9)">Diagnóstico</text>
+              </g>
+              <!-- Node I: bottom -->
+              <g class="adime-int-node" id="nodeI" data-phase="I" style="cursor:pointer" transform="translate(160,290)">
+                <circle r="32" fill="url(#gi2)" filter="url(#glow2)"/>
+                <text text-anchor="middle" y="-3" font-family="Outfit,sans-serif" font-weight="800" font-size="20" fill="white">I</text>
+                <text text-anchor="middle" y="13" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.9)">Intervención</text>
+              </g>
+              <!-- Node ME: left -->
+              <g class="adime-int-node" id="nodeME" data-phase="ME" style="cursor:pointer" transform="translate(30,160)">
+                <circle r="32" fill="url(#gme2)" filter="url(#glow2)"/>
+                <text text-anchor="middle" y="-3" font-family="Outfit,sans-serif" font-weight="800" font-size="14" fill="white">M/E</text>
+                <text text-anchor="middle" y="13" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.9)">Monitoreo</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 4: Evaluación – 5 Dominios (FULL WIDTH)
+           ───────────────────────────────────────────── -->
+      <section class="slide" id="slide-4" data-title="A – Evaluación" data-num="4">
+        <div class="slide-domains-layout">
+
+          <!-- Compact top header bar -->
+          <div class="domains-top-bar">
+            <div class="dtb-left">
+              <div class="slide-tag blue">A · Evaluación</div>
+              <h2 style="font-family:var(--font-title);font-weight:800;font-size:clamp(1rem,2vw,1.4rem);line-height:1.2;">
+                Fase 1: Los <em style="font-style:normal;color:var(--teal-700)">5 Dominios</em> de la Evaluación Inteligente
+              </h2>
+            </div>
+            <div class="dtb-right">
+              <div class="domains-tip">
+                <strong>Regla de oro:</strong> La evaluación no es juntar datos al azar — es encontrar el <em>hilo conductor</em> que explica el estado del paciente.
+              </div>
+              <p class="slide-desc" style="margin:0">
+                🖱️ Haz clic en cada tarjeta — <strong id="domainsFlipped">0</strong>/5 dominios explorados
+              </p>
+            </div>
+          </div>
+
+          <!-- 5 Large Domain Cards – Full Width -->
+          <div class="domains-grid-full">
+
+            <!-- CH -->
+            <div class="domain-card" id="dc-ch" data-domain="CH">
+              <div class="domain-card-inner">
+                <div class="domain-front">
+                  <span class="domain-icon">🧑‍⚕️</span>
+                  <span class="domain-abbr">CH</span>
+                  <span class="domain-name">Historia del<br>Cliente</span>
+                  <span class="domain-hint">Clic para ver →</span>
+                </div>
+                <div class="domain-back" style="--dcolor:#1e3a5f">
+                  <h4>Historia del Cliente (CH)</h4>
+                  <ul>
+                    <li>Motivo de consulta y diagnóstico médico</li>
+                    <li>Historia médica personal y familiar</li>
+                    <li>Farmacología actual (interacciones nut.)</li>
+                    <li>Contexto social, económico y cultural</li>
+                    <li>Nivel de actividad física habitual</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- AD -->
+            <div class="domain-card" id="dc-ad" data-domain="AD">
+              <div class="domain-card-inner">
+                <div class="domain-front">
+                  <span class="domain-icon">📏</span>
+                  <span class="domain-abbr">AD</span>
+                  <span class="domain-name">Datos<br>Antropométricos</span>
+                  <span class="domain-hint">Clic para ver →</span>
+                </div>
+                <div class="domain-back" style="--dcolor:#0d9488">
+                  <h4>Datos Antropométricos (AD)</h4>
+                  <ul>
+                    <li>Peso, talla e Índice de Masa Corporal</li>
+                    <li>Composición corporal (%GC, MLG)</li>
+                    <li>Circunferencia de cintura (grasa visceral)</li>
+                    <li>Cambios de peso recientes (% PP)</li>
+                    <li>Velocidad de crecimiento (pediátrico)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- BD -->
+            <div class="domain-card" id="dc-bd" data-domain="BD">
+              <div class="domain-card-inner">
+                <div class="domain-front">
+                  <span class="domain-icon">🔬</span>
+                  <span class="domain-abbr">BD</span>
+                  <span class="domain-name">Datos<br>Bioquímicos</span>
+                  <span class="domain-hint">Clic para ver →</span>
+                </div>
+                <div class="domain-back" style="--dcolor:#0369a1">
+                  <h4>Datos Bioquímicos (BD)</h4>
+                  <ul>
+                    <li>HbA1c y glucosa en ayuno</li>
+                    <li>Perfil de lípidos completo (CT, LDL, HDL, TG)</li>
+                    <li>TFG y creatinina (función renal)</li>
+                    <li>Albúmina / prealbúmina (estado nutricio)</li>
+                    <li>Micronutrimentos: Fe, Vit D, B12, Ácido Fólico</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- PD -->
+            <div class="domain-card" id="dc-pd" data-domain="PD">
+              <div class="domain-card-inner">
+                <div class="domain-front">
+                  <span class="domain-icon">👁️</span>
+                  <span class="domain-abbr">PD</span>
+                  <span class="domain-name">Datos Físicos<br>y Clínicos</span>
+                  <span class="domain-hint">Clic para ver →</span>
+                </div>
+                <div class="domain-back" style="--dcolor:#134e4a">
+                  <h4>Datos Físicos/Clínicos (PD)</h4>
+                  <ul>
+                    <li>Apariencia general y signos vitales</li>
+                    <li>Signos de deficiencia: glositis, koiloniquia</li>
+                    <li>Edema, ascitis (retención de líquidos)</li>
+                    <li>Pérdida visible de masa muscular (sarcopenia)</li>
+                    <li>Función gastrointestinal (náusea, diarrea)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- FH -->
+            <div class="domain-card" id="dc-fh" data-domain="FH">
+              <div class="domain-card-inner">
+                <div class="domain-front">
+                  <span class="domain-icon">🍽️</span>
+                  <span class="domain-abbr">FH</span>
+                  <span class="domain-name">Historial<br>Dietético</span>
+                  <span class="domain-hint">Clic para ver →</span>
+                </div>
+                <div class="domain-back" style="--dcolor:#1e3a5f">
+                  <h4>Historial Dietético / Ingesta (FH)</h4>
+                  <ul>
+                    <li>R24h, frecuencia de alimentos y diario</li>
+                    <li>Ingesta cuantificada de macro y micronutrimentos</li>
+                    <li>Distribución de comidas y horarios</li>
+                    <li>Conducta alimentaria, antojos y restricciones</li>
+                    <li>Suplementación actual y preparación de alimentos</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /domains-grid-full -->
+        </div><!-- /slide-domains-layout -->
+      </section>
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 5: Diagnóstico – Enunciado PES
+           ───────────────────────────────────────────── -->
+      <section class="slide" id="slide-5" data-title="D – Diagnóstico PES" data-num="5">
+        <div class="slide-content">
+          <div class="slide-text">
+            <div class="slide-tag teal">D · Diagnóstico</div>
+            <h2>Fase 2: La <em>Anatomía del Diagnóstico</em> Nutricio</h2>
+            <p class="slide-desc">Construye el enunciado PES haciendo clic en cada componente.</p>
+            <div class="pes-formula" id="pesFormula">
+              <div class="pes-block" id="pesP" data-block="P">
+                <span class="pes-letter">P</span>
+                <span class="pes-label">Problema</span>
+                <span class="pes-sublabel">Etiqueta eNCPT</span>
+              </div>
+              <div class="pes-connector">relacionado con</div>
+              <div class="pes-block" id="pesE" data-block="E">
+                <span class="pes-letter">E</span>
+                <span class="pes-label">Etiología</span>
+                <span class="pes-sublabel">Causa raíz accionable</span>
+              </div>
+              <div class="pes-connector">evidenciado por</div>
+              <div class="pes-block" id="pesS" data-block="S">
+                <span class="pes-letter">S</span>
+                <span class="pes-label">Signos/Síntomas</span>
+                <span class="pes-sublabel">Datos objetivos</span>
+              </div>
+            </div>
+            <div class="pes-output" id="pesOutput" aria-live="polite"></div>
+          </div>
+          <div class="slide-visual">
+            <div class="pes-explainer-card">
+              <div class="pec-item active" id="pexP">
+                <div class="pec-header"><span class="pec-letter p-color">P</span> Problema Nutricio</div>
+                <p>Término estandarizado del eNCPT que describe el problema nutricio actual. <strong>No es el diagnóstico médico</strong>.</p>
+                <div class="pec-examples">
+                  <span class="example-pill">Ingesta excesiva de energía</span>
+                  <span class="example-pill">Pérdida de peso involuntaria</span>
+                  <span class="example-pill">Conocimiento nutricio deficiente</span>
+                </div>
+              </div>
+              <div class="pec-item" id="pexE">
+                <div class="pec-header"><span class="pec-letter e-color">E</span> Etiología</div>
+                <p>La <strong>causa raíz</strong> sobre la que el nutriólogo puede actuar directamente. Aquí apunta tu intervención.</p>
+                <div class="pec-examples">
+                  <span class="example-pill">Consumo habitual de ultraprocesados</span>
+                  <span class="example-pill">Falta de acceso a alimentos nutritivos</span>
+                  <span class="example-pill">Creencias erróneas sobre alimentación</span>
+                </div>
+              </div>
+              <div class="pec-item" id="pexS">
+                <div class="pec-header"><span class="pec-letter s-color">S</span> Signos y Síntomas</div>
+                <p>Datos <strong>objetivos y cuantificables</strong> que validan el diagnóstico y serán tus indicadores de monitoreo.</p>
+                <div class="pec-examples">
+                  <span class="example-pill">HbA1c 8.2%, glucosa 145 mg/dL</span>
+                  <span class="example-pill">IMC 33, CA 102 cm</span>
+                  <span class="example-pill">Ingesta 3,500 kcal/día</span>
+                </div>
+              </div>
+            </div>
+            <div class="key-quote" style="margin-top:12px">
+              <span class="quote-icon">💡</span>
+              Un DM (ej. Diabetes) describe <em>patología</em>; un DN (ej. Ingesta excesiva de CHO) describe un problema que <strong>tú puedes resolver</strong>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 6: Taller PES Correcto / Incorrecto
+           ───────────────────────────────────────────── -->
+      <section class="slide" id="slide-6" data-title="Taller PES" data-num="6">
+        <div class="slide-content">
+          <div class="slide-text">
+            <div class="slide-tag orange">Taller · Interactivo</div>
+            <h2>Afina tu <em>Lente Clínico</em>: PES Correcto vs. Incorrecto</h2>
+            <p class="slide-desc">Gira cada tarjeta para descubrir la razón del error o el por qué es correcto.</p>
+            <div class="pes-criteria-box">
+              <div class="criteria-item"><span class="c-ok">✓</span> P = Etiqueta oficial eNCPT</div>
+              <div class="criteria-item"><span class="c-ok">✓</span> E = Causa accionable por nutriología</div>
+              <div class="criteria-item"><span class="c-ok">✓</span> S = Datos cuantitativos objetivos</div>
+            </div>
+          </div>
+          <div class="slide-visual">
+            <div class="pes-flip-grid">
+              <!-- Card 1: Incorrect -->
+              <div class="pes-flip-card incorrect-card" id="pesCard1">
+                <div class="pes-flip-inner">
+                  <div class="pes-flip-front">
+                    <span class="flip-badge incorrect-badge">¿Correcto?</span>
+                    <p class="flip-statement">"Obesidad relacionado con mala alimentación evidenciado por IMC de 32."</p>
+                    <span class="flip-cta">← Gira para ver →</span>
+                  </div>
+                  <div class="pes-flip-back incorrect-back">
+                    <span class="flip-badge back-badge">❌ Incorrecto</span>
+                    <div class="flip-reasons">
+                      <div class="flip-reason"><strong>P:</strong> "Obesidad" es diagnóstico médico, no nutricio.</div>
+                      <div class="flip-reason"><strong>E:</strong> "Mala alimentación" no es accionable ni específico.</div>
+                      <div class="flip-reason"><strong>S:</strong> Solo IMC: falta cuantificar la ingesta real.</div>
+                    </div>
+                    <p class="flip-rule">El P debe venir del eNCPT; E debe ser una causa en la que puedas intervenir.</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Card 2: Correct -->
+              <div class="pes-flip-card correct-card" id="pesCard2">
+                <div class="pes-flip-inner">
+                  <div class="pes-flip-front">
+                    <span class="flip-badge correct-badge">¿Correcto?</span>
+                    <p class="flip-statement">"Ingesta energética excesiva (P) r/c consumo habitual de ultraprocesados y falta de planeación alimentaria (E) e/p 3,200 kcal/día e IMC 32 (S)."</p>
+                    <span class="flip-cta">← Gira para ver →</span>
+                  </div>
+                  <div class="pes-flip-back correct-back">
+                    <span class="flip-badge back-badge">✅ Correcto</span>
+                    <div class="flip-reasons">
+                      <div class="flip-reason"><strong>P:</strong> "Ingesta energética excesiva" = etiqueta eNCPT válida.</div>
+                      <div class="flip-reason"><strong>E:</strong> Causas accionables y específicas.</div>
+                      <div class="flip-reason"><strong>S:</strong> Datos cuantitativos objetivos medibles.</div>
+                    </div>
+                    <p class="flip-rule">La intervención atacará la etiología; el monitoreo medirá los S/S.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 7: Intervención – Llave y Candado
+           ───────────────────────────────────────────── -->
+      <section class="slide" id="slide-7" data-title="I – Intervención" data-num="7">
+        <div class="slide-content">
+          <div class="slide-text">
+            <div class="slide-tag blue">I · Intervención</div>
+            <h2>Fase 3: Diseñar <em>Soluciones de Alto Impacto</em></h2>
+            <p class="slide-desc">La intervención es la llave que abre el candado de la etiología.</p>
+            <div class="lock-key-visual" id="lockKeyVisual">
+              <div class="lock-side">
+                <div class="lock-box" id="lockBox">
+                  <svg viewBox="0 0 80 100" class="lock-svg">
+                    <rect x="10" y="42" width="60" height="52" rx="8" fill="#ef4444" opacity="0.9"/>
+                    <path d="M20,42 V28 A20,20 0 0,1 60,28 V42" fill="none" stroke="#ef4444" stroke-width="10" stroke-linecap="round"/>
+                    <circle cx="40" cy="68" r="10" fill="white" opacity="0.3"/>
+                  </svg>
+                  <span class="lock-label">Etiología</span>
+                  <span class="lock-sub" id="lockEtiLabel">Causa raíz del PES</span>
+                </div>
+              </div>
+              <div class="key-side">
+                <svg viewBox="0 0 100 40" class="key-svg" id="keySvg">
+                  <rect x="0" y="12" width="70" height="16" rx="4" fill="#14b8a6"/>
+                  <circle cx="80" cy="20" r="18" fill="none" stroke="#14b8a6" stroke-width="6"/>
+                  <rect x="50" y="22" width="10" height="8" rx="2" fill="#14b8a6"/>
+                  <rect x="62" y="22" width="7" height="5" rx="1.5" fill="#14b8a6"/>
+                </svg>
+                <span class="key-label">Intervención</span>
+              </div>
+            </div>
+            <button class="unlock-btn" id="unlockBtn">🔓 Simular desbloqueo</button>
+          </div>
+          <div class="slide-visual">
+            <div class="intervention-domains">
+              <div class="int-domain-card" data-domain="ND">
+                <div class="int-domain-icon">🍽️</div>
+                <div class="int-domain-body">
+                  <strong>ND · Entrega de Alimentos y Nutrientes</strong>
+                  <p>Prescripción de planes dietéticos, suplementos, soporte nutricio enteral/parenteral.</p>
+                </div>
+              </div>
+              <div class="int-domain-card" data-domain="E">
+                <div class="int-domain-icon">📚</div>
+                <div class="int-domain-body">
+                  <strong>E · Educación Nutricia</strong>
+                  <p>Enseñar conocimientos teóricos (instrucción) o habilidades prácticas (aplicación).</p>
+                </div>
+              </div>
+              <div class="int-domain-card" data-domain="C">
+                <div class="int-domain-icon">🧠</div>
+                <div class="int-domain-body">
+                  <strong>C · Consejería Nutricia</strong>
+                  <p>Modificación de conductas, resolución de barreras y apoyo motivacional.</p>
+                </div>
+              </div>
+              <div class="int-domain-card" data-domain="RC">
+                <div class="int-domain-icon">🤝</div>
+                <div class="int-domain-body">
+                  <strong>RC · Coordinación del Cuidado</strong>
+                  <p>Referir y colaborar con médicos, psicólogos, entrenadores y otros profesionales.</p>
+                </div>
+              </div>
+            </div>
+            <div class="key-quote">
+              <span class="quote-icon">⚠️</span>
+              Si tu intervención <strong>no ataca la Etiología</strong> definida en tu PES, tu plan fallará sin importar qué tan bien calculado esté.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 8: M/E – Dashboard
+           ───────────────────────────────────────────── -->
+      <section class="slide" id="slide-8" data-title="M/E – Monitoreo" data-num="8">
+        <div class="slide-content">
+          <div class="slide-text">
+            <div class="slide-tag teal">M/E · Monitoreo</div>
+            <h2>Fase 4: Medir el <em>Éxito Clínico</em> de Forma Objetiva</h2>
+            <p class="slide-desc">Ajusta los controles del panel para ver cómo evolucionan los indicadores del paciente.</p>
+            <div class="monitor-rule">
+              <h4>¿Cómo sé qué monitorear?</h4>
+              <p>Revisa los <strong>Signos y Síntomas (S)</strong> de tu enunciado PES original. Esos son tus indicadores de monitoreo.</p>
+              <div class="monitor-example">
+                <span class="me-tag">Ejemplo PES</span>
+                <em>"Pérdida de peso involuntaria <strong>evidenciado por</strong> pérdida 8% en 1 mes"</em>
+                <span class="me-arrow">→</span>
+                <em>Monitorearé: <strong>Peso actual</strong> + <strong>Ingesta calórica</strong></em>
+              </div>
+            </div>
+          </div>
+          <div class="slide-visual">
+            <div class="dashboard-panel" id="dashboardPanel">
+              <div class="dp-header">
+                <span class="dp-title">📊 Panel de Seguimiento · Semanas 0–8</span>
+                <span class="dp-patient">Paciente: Caso Ilustrativo</span>
+              </div>
+              <div class="dp-chart-area">
+                <svg viewBox="0 0 380 160" class="dp-svg" id="dpSvg">
+                  <!-- Grid -->
+                  <line x1="50" y1="10" x2="50" y2="140" stroke="#e2e8f0" stroke-width="1"/>
+                  <line x1="50" y1="140" x2="370" y2="140" stroke="#e2e8f0" stroke-width="1"/>
+                  <line x1="50" y1="50" x2="370" y2="50" stroke="#e2e8f0" stroke-width="0.5" stroke-dasharray="4 3"/>
+                  <line x1="50" y1="95" x2="370" y2="95" stroke="#e2e8f0" stroke-width="0.5" stroke-dasharray="4 3"/>
+                  <!-- Y-axis labels -->
+                  <text x="44" y="14" text-anchor="end" font-size="8" fill="#94a3b8">alto</text>
+                  <text x="44" y="54" text-anchor="end" font-size="8" fill="#94a3b8">meta</text>
+                  <text x="44" y="99" text-anchor="end" font-size="8" fill="#94a3b8">bajo</text>
+                  <!-- X-axis weeks -->
+                  <text x="50"  y="152" text-anchor="middle" font-size="7.5" fill="#94a3b8">S0</text>
+                  <text x="103" y="152" text-anchor="middle" font-size="7.5" fill="#94a3b8">S1</text>
+                  <text x="156" y="152" text-anchor="middle" font-size="7.5" fill="#94a3b8">S2</text>
+                  <text x="209" y="152" text-anchor="middle" font-size="7.5" fill="#94a3b8">S3</text>
+                  <text x="262" y="152" text-anchor="middle" font-size="7.5" fill="#94a3b8">S4</text>
+                  <text x="315" y="152" text-anchor="middle" font-size="7.5" fill="#94a3b8">S5</text>
+                  <text x="368" y="152" text-anchor="middle" font-size="7.5" fill="#94a3b8">S6</text>
+                  <!-- Lines -->
+                  <polyline id="dpLineHba1c" points="" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline id="dpLinePeso" points="" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- Goal line -->
+                  <line x1="50" y1="50" x2="370" y2="50" stroke="#0d9488" stroke-width="1" stroke-dasharray="6 4" opacity="0.5"/>
+                </svg>
+                <div class="dp-legend">
+                  <span class="dp-leg-item"><span class="dp-leg-dot" style="background:#2563eb"></span> HbA1c</span>
+                  <span class="dp-leg-item"><span class="dp-leg-dot" style="background:#14b8a6"></span> Peso (kg)</span>
+                  <span class="dp-leg-dashed">— — Meta</span>
+                </div>
+              </div>
+              <div class="dp-controls">
+                <div class="dp-control-group">
+                  <label>Adherencia al Plan <span class="dp-val" id="dpAdherencia">60%</span></label>
+                  <input type="range" min="0" max="100" value="60" class="dp-slider" id="dpSliderAdherencia"/>
+                </div>
+                <div class="dp-control-group">
+                  <label>Semanas de Seguimiento <span class="dp-val" id="dpSemanas">4</span></label>
+                  <input type="range" min="1" max="6" value="4" class="dp-slider" id="dpSliderSemanas"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 9: Algoritmo Mental Universal
+           ───────────────────────────────────────────── -->
+      <section class="slide" id="slide-9" data-title="Algoritmo Universal" data-num="9">
+        <div class="slide-content">
+          <div class="slide-text">
+            <div class="slide-tag blue">Paso a Paso</div>
+            <h2>La <em>Ruta Crítica</em> para Cualquier Paciente</h2>
+            <p class="slide-desc">Haz clic en "Siguiente paso" para avanzar por el algoritmo.</p>
+            <div class="algo-nav-btns">
+              <button class="algo-btn" id="algoPrev" disabled>◀ Anterior</button>
+              <span class="algo-step-counter" id="algoCounter">Paso 1 / 4</span>
+              <button class="algo-btn" id="algoNext">Siguiente ▶</button>
+            </div>
+            <div class="algo-steps-panel" id="algoPanel">
+              <!-- Steps rendered by JS -->
+            </div>
+          </div>
+          <div class="slide-visual">
+            <div class="algo-flowchart" id="algoFlowchart">
+              <!-- Steps rendered by JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 10: Caso Integrador
+           ───────────────────────────────────────────── -->
+      <section class="slide" id="slide-10" data-title="Caso Integrador" data-num="10">
+        <div class="slide-content">
+          <div class="slide-text">
+            <div class="slide-tag teal">El PAN en Acción</div>
+            <h2>Caso de Éxito: <em>Síndrome Metabólico</em> + Hígado Graso</h2>
+            <div class="case-patient-card">
+              <div class="case-avatar">👨</div>
+              <div class="case-patient-info">
+                <strong>Miguel, 42 años</strong>
+                <span>Síndrome Metabólico · HGNA confirmado por ecografía</span>
+                <span>Oficinista · Sedentario · Come fuera de casa 5 días/sem</span>
+              </div>
+            </div>
+            <div class="case-buttons">
+              <button class="case-phase-btn active" id="caseBtnA" data-phase="case-a">A · Evaluación</button>
+              <button class="case-phase-btn" id="caseBtnD" data-phase="case-d">D · PES</button>
+              <button class="case-phase-btn" id="caseBtnI" data-phase="case-i">I · Intervención</button>
+              <button class="case-phase-btn" id="caseBtnME" data-phase="case-me">M/E · Monitoreo</button>
+            </div>
+          </div>
+          <div class="slide-visual">
+            <div class="case-content-panel" id="caseContentPanel">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 11: Caja de Herramientas
+           ───────────────────────────────────────────── -->
+      <section class="slide" id="slide-11" data-title="Caja de Herramientas" data-num="11">
+        <div class="slide-split">
+          <div class="split-header">
+            <div class="slide-tag blue">Tu Consulta</div>
+            <h2>La <em>Caja de Herramientas</em> del Profesional</h2>
+            <p>Recursos clave para llevar directo a tu práctica clínica diaria.</p>
+          </div>
+          <div class="tools-grid">
+            <!-- Tool 1 -->
+            <div class="tool-card" tabindex="0">
+              <div class="tool-icon">📖</div>
+              <div class="tool-body">
+                <h4>Terminología eNCPT</h4>
+                <p>Acceso a la nomenclatura oficial de la Academy of Nutrition and Dietetics para diagnósticos, intervenciones e indicadores.</p>
+                <a class="tool-link" href="https://www.andeal.org/ncpt.cfm" target="_blank" rel="noopener">andeal.org →</a>
+              </div>
+            </div>
+            <!-- Tool 2 -->
+            <div class="tool-card" tabindex="0">
+              <div class="tool-icon">✅</div>
+              <div class="tool-body">
+                <h4>Checklist de Redacción PES</h4>
+                <ul class="tool-checklist">
+                  <li><input type="checkbox" id="chk1"/><label for="chk1">P = Etiqueta oficial eNCPT</label></li>
+                  <li><input type="checkbox" id="chk2"/><label for="chk2">E = Causa accionable (no médica)</label></li>
+                  <li><input type="checkbox" id="chk3"/><label for="chk3">S = Datos cuantitativos objetivos</label></li>
+                  <li><input type="checkbox" id="chk4"/><label for="chk4">La I ataca directamente la E</label></li>
+                  <li><input type="checkbox" id="chk5"/><label for="chk5">El M/E mide los S del PES</label></li>
+                </ul>
+              </div>
+            </div>
+            <!-- Tool 3 -->
+            <div class="tool-card" tabindex="0">
+              <div class="tool-icon">📋</div>
+              <div class="tool-body">
+                <h4>Plantilla ADIME de Expediente</h4>
+                <div class="tool-template">
+                  <div class="tmpl-row"><span class="tmpl-letter">A</span> <strong>Evaluación:</strong> CH / AD / BD / PD / FH</div>
+                  <div class="tmpl-row"><span class="tmpl-letter">D</span> <strong>Diagnóstico:</strong> [P] r/c [E] e/p [S]</div>
+                  <div class="tmpl-row"><span class="tmpl-letter">I</span> <strong>Intervención:</strong> ND / E / C / RC</div>
+                  <div class="tmpl-row"><span class="tmpl-letter">M</span> <strong>Monitoreo:</strong> Indicadores basados en S del PES</div>
+                </div>
+              </div>
+            </div>
+            <!-- Tool 4 -->
+            <div class="tool-card" tabindex="0">
+              <div class="tool-icon">📚</div>
+              <div class="tool-body">
+                <h4>Referencia Científica Clave</h4>
+                <p><em>Academy of Nutrition and Dietetics.</em> Nutrition Care Process Terminology (eNCPT). 2024.</p>
+                <p><em>ADA Standards of Care in Diabetes 2025.</em> Diabetes Care, 48(S1).</p>
+                <a class="tool-link" href="https://diabetesjournals.org/care" target="_blank" rel="noopener">diabetesjournals.org →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────────────────────────────────────────
+           SLIDE 12: Cierre
+           ───────────────────────────────────────────── -->
+      <section class="slide" id="slide-12" data-title="Cierre · Compromiso" data-num="12">
+        <div class="slide-cover closing-cover">
+          <div class="closing-badge">
+            <span>🏆</span> De 0 a 100 — ¡Lo lograste!
+          </div>
+          <h2 class="closing-title">Eleva el <em>Estándar</em> de tu Práctica</h2>
+          <p class="closing-body">El Proceso de Atención Nutricia no es más trabajo;<br> es el trabajo hecho con <strong>ciencia, orden y excelencia</strong>.</p>
+
+          <div class="closing-adime-row">
+            <div class="closing-adime-pill" style="--cp:#1e3a5f"><strong>A</strong> Evalúa con rigor</div>
+            <div class="closing-arrow">→</div>
+            <div class="closing-adime-pill" style="--cp:#0d9488"><strong>D</strong> Diagnostica en eNCPT</div>
+            <div class="closing-arrow">→</div>
+            <div class="closing-adime-pill" style="--cp:#0369a1"><strong>I</strong> Interviene la etiología</div>
+            <div class="closing-arrow">→</div>
+            <div class="closing-adime-pill" style="--cp:#134e4a"><strong>M/E</strong> Mide los resultados</div>
+          </div>
+
+          <div class="commitment-box">
+            <h4>Mi Compromiso Clínico</h4>
+            <p>En mi próxima consulta aplicaré el PAN completo: formularé mi diagnóstico nutricio en formato PES usando terminología eNCPT y calendarizaré mi monitoreo basado en los signos y síntomas identificados.</p>
+            <div class="commitment-sig">
+              <div class="sig-line"></div>
+              <span>Firma y fecha</span>
+            </div>
+          </div>
+
+          <blockquote class="closing-quote">
+            "Empieza hoy. <strong>Tu primer PES cambia todo.</strong>"
+          </blockquote>
+          <div class="cover-meta">
+            <span>Academy of Nutrition and Dietetics · eNCPT 2024</span>
+            <span>·</span>
+            <span>ADA Standards of Care 2025</span>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /slides-viewport -->
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+      <button class="nav-btn" id="prevBtn" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nav-dots" id="navDots" aria-label="Indicadores de progreso"></div>
+      <button class="nav-btn" id="nextBtn" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- Speaker Notes Panel -->
+    <div class="notes-panel" id="notesPanel" aria-label="Notas del ponente">
+      <div class="notes-header">
+        <span>🎤 Guión del Ponente</span>
+        <button class="notes-close" id="notesClose">✕</button>
+      </div>
+      <div class="notes-body" id="notesBody"></div>
+    </div>
+    <button class="notes-toggle-btn" id="notesToggle" aria-label="Mostrar/ocultar notas">📋 Notas</button>
+
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
